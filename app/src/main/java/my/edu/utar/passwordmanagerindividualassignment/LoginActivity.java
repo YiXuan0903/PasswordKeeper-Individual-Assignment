@@ -37,10 +37,8 @@ public class LoginActivity extends AppCompatActivity {
         tvSubtitle = findViewById(R.id.tvSubtitle);
         btnLogin = findViewById(R.id.btnLogin);
 
-        // Check if PIN has been set before
         String savedPin = prefs.getString(KEY_PIN, null);
         if (savedPin == null) {
-            // First time → setup mode
             isSetupMode = true;
             tvSubtitle.setText("Set a PIN to protect your passwords");
             confirmPinLayout.setVisibility(View.VISIBLE);
@@ -94,7 +92,7 @@ public class LoginActivity extends AppCompatActivity {
             for (byte b : hash) sb.append(String.format("%02x", b));
             return sb.toString();
         } catch (Exception e) {
-            return pin; // fallback
+            return pin;
         }
     }
 
