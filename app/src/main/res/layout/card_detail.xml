@@ -1,0 +1,219 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    android:padding="24dp"
+    android:background="@drawable/card_detail_bg">
+
+    <!-- Handle bar -->
+    <View
+        android:layout_width="40dp"
+        android:layout_height="4dp"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginBottom="20dp"
+        android:background="#DDDDDD"/>
+
+    <!-- Site Name -->
+    <TextView
+        android:id="@+id/bsSiteName"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textSize="20sp"
+        android:textStyle="bold"
+        android:textColor="#1A1A2E"
+        android:layout_marginBottom="20dp"/>
+
+    <!-- Username Row -->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:gravity="center_vertical"
+        android:layout_marginBottom="12dp">
+
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:orientation="vertical">
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Username"
+                android:textSize="12sp"
+                android:textColor="#888888"/>
+            <TextView
+                android:id="@+id/bsUsername"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="15sp"
+                android:textColor="#1A1A2E"/>
+        </LinearLayout>
+
+        <ImageButton
+            android:id="@+id/copyUsername"
+            android:layout_width="48dp"
+            android:layout_height="48dp"
+            android:contentDescription="Copy username"
+            android:src="@drawable/outline_content_copy_24"
+            android:background="?attr/selectableItemBackgroundBorderless"
+            app:tint="#888888"/>
+    </LinearLayout>
+
+    <!-- Password Row -->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:gravity="center_vertical"
+        android:layout_marginBottom="12dp">
+
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:orientation="vertical">
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Password"
+                android:textSize="12sp"
+                android:textColor="#888888"/>
+            <TextView
+                android:id="@+id/bsPassword"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="15sp"
+                android:textColor="#1A1A2E"
+                android:text="••••••••"/>
+        </LinearLayout>
+
+        <ImageButton
+            android:id="@+id/togglePassword"
+            android:layout_width="48dp"
+            android:layout_height="48dp"
+            android:contentDescription="Toggle password visibility"
+            android:src="@drawable/outline_visibility_24"
+            android:background="?attr/selectableItemBackgroundBorderless"
+            app:tint="#888888"/>
+
+        <ImageButton
+            android:id="@+id/copyPassword"
+            android:layout_width="48dp"
+            android:layout_height="48dp"
+            android:contentDescription="Copy password"
+            android:src="@drawable/outline_content_copy_24"
+            android:background="?attr/selectableItemBackgroundBorderless"
+            app:tint="#888888"/>
+    </LinearLayout>
+
+    <!-- Extra PIN Row -->
+    <LinearLayout
+        android:id="@+id/pinRow"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:gravity="center_vertical"
+        android:layout_marginBottom="12dp"
+        android:visibility="gone">
+
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:orientation="vertical">
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Extra PIN"
+                android:textSize="12sp"
+                android:textColor="#888888"/>
+            <TextView
+                android:id="@+id/bsExtraPin"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="15sp"
+                android:textColor="#1A1A2E"
+                android:text="••••••••"/>
+        </LinearLayout>
+
+        <ImageButton
+            android:id="@+id/togglePin"
+            android:layout_width="48dp"
+            android:layout_height="48dp"
+            android:contentDescription="Toggle PIN visibility"
+            android:src="@drawable/outline_visibility_24"
+            android:background="?attr/selectableItemBackgroundBorderless"
+            app:tint="#888888"/>
+
+        <ImageButton
+            android:id="@+id/copyPin"
+            android:layout_width="48dp"
+            android:layout_height="48dp"
+            android:src="@drawable/outline_content_copy_24"
+            android:background="?attr/selectableItemBackgroundBorderless"
+            app:tint="#888888"/>
+    </LinearLayout>
+
+    <!-- Challenge Q&A Row -->
+    <LinearLayout
+        android:id="@+id/challengeRow"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:layout_marginBottom="20dp"
+        android:visibility="gone">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Challenge Q&amp;A"
+            android:textSize="12sp"
+            android:textColor="#888888"/>
+        <TextView
+            android:id="@+id/bsChallengeQA"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="15sp"
+            android:textColor="#1A1A2E"/>
+    </LinearLayout>
+
+    <!-- Divider -->
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="#EEEEEE"
+        android:layout_marginBottom="16dp"/>
+
+    <!-- Edit + Delete Buttons -->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:weightSum="2">
+
+        <Button
+            android:id="@+id/bsDeleteBtn"
+            android:layout_width="0dp"
+            android:layout_height="48dp"
+            android:layout_weight="1"
+            android:layout_marginEnd="8dp"
+            android:text="Delete"
+            android:backgroundTint="#FF5252"
+            android:textColor="@color/white"/>
+
+        <Button
+            android:id="@+id/bsEditBtn"
+            android:layout_width="0dp"
+            android:layout_height="48dp"
+            android:layout_weight="1"
+            android:layout_marginStart="8dp"
+            android:text="Edit"
+            android:backgroundTint="@color/darkBlue"
+            android:textColor="@color/white"/>
+    </LinearLayout>
+
+</LinearLayout>
