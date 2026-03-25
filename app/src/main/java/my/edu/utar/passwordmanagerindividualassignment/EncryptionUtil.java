@@ -6,7 +6,7 @@ import javax.crypto.spec.SecretKeySpec;
 
 public class EncryptionUtil {
 
-    private static final String KEY = "MyPassMgr@UTAR!1"; // 16字符 = 128-bit AES
+    private static final String KEY = "MyPassMgr@UTAR!1";
     private static final String ALGORITHM = "AES";
 
     public static String encrypt(String plainText) {
