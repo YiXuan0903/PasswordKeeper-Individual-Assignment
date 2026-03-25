@@ -12,8 +12,8 @@ import java.util.concurrent.Executors;
 
 public class AddEditActivity extends AppCompatActivity {
 
-    private TextInputEditText etSiteName, etUsername, etPassword;
-    private TextInputEditText etExtraPin, etChallengeQuestion, etChallengeAnswer;
+    private TextInputEditText siteName, username, password;
+    private TextInputEditText extraPIN, challengeQuestion, challengeAnswer;
     private AppDatabase db;
     private ExecutorService executor = Executors.newSingleThreadExecutor();
     private PasswordEntry existingEntry = null;
@@ -25,12 +25,12 @@ public class AddEditActivity extends AppCompatActivity {
 
         db = AppDatabase.getInstance(this);
 
-        etSiteName = findViewById(R.id.etSiteName);
-        etUsername = findViewById(R.id.etUsername);
-        etPassword = findViewById(R.id.etPassword);
-        etExtraPin = findViewById(R.id.etExtraPin);
-        etChallengeQuestion = findViewById(R.id.etChallengeQuestion);
-        etChallengeAnswer = findViewById(R.id.etChallengeAnswer);
+        siteName = findViewById(R.id.siteName);
+        username = findViewById(R.id.username);
+        password = findViewById(R.id.password);
+        extraPIN = findViewById(R.id.extraPIN);
+        challengeQuestion = findViewById(R.id.challengeQuestion);
+        challengeAnswer = findViewById(R.id.challengeAnswer);
         TextView pageTitle = findViewById(R.id.pageTitle);
         ImageView deleteButton = findViewById(R.id.deleteButton);
 
@@ -44,12 +44,12 @@ public class AddEditActivity extends AppCompatActivity {
             executor.execute(() -> {
                 existingEntry = db.passwordDao().getById(entryId);
                 runOnUiThread(() -> {
-                    etSiteName.setText(existingEntry.getSiteName());
-                    etUsername.setText(existingEntry.getUsername());
-                    etPassword.setText(EncryptionUtil.decrypt(existingEntry.getPassword()));
-                    etExtraPin.setText(EncryptionUtil.decrypt(existingEntry.getExtraPin()));
-                    etChallengeQuestion.setText(existingEntry.getChallengeQuestion());
-                    etChallengeAnswer.setText(existingEntry.getChallengeAnswer());
+                    siteName.setText(existingEntry.getSiteName());
+                    username.setText(existingEntry.getUsername());
+                    password.setText(EncryptionUtil.decrypt(existingEntry.getPassword()));
+                    extraPIN.setText(EncryptionUtil.decrypt(existingEntry.getExtraPin()));
+                    challengeQuestion.setText(existingEntry.getChallengeQuestion());
+                    challengeAnswer.setText(existingEntry.getChallengeAnswer());
                 });
             });
 
@@ -71,30 +71,30 @@ public class AddEditActivity extends AppCompatActivity {
     }
 
     private void saveEntry() {
-        String siteName = etSiteName.getText().toString().trim();
-        String username = etUsername.getText().toString().trim();
-        String password = etPassword.getText().toString().trim();
+        String sitenameInput = siteName.getText().toString().trim();
+        String usernameInput = username.getText().toString().trim();
+        String passwordInput = password.getText().toString().trim();
 
-        if (siteName.isEmpty() || username.isEmpty() || password.isEmpty()) {
+        if (sitenameInput.isEmpty() || usernameInput.isEmpty() || passwordInput.isEmpty()) {
             Toast.makeText(this, "Site Name, Username and Password are required", Toast.LENGTH_SHORT).show();
             return;
         }
 
-        String extraPin = etExtraPin.getText().toString().trim();
-        String challengeQ = etChallengeQuestion.getText().toString().trim();
-        String challengeA = etChallengeAnswer.getText().toString().trim();
+        String extraPin = extraPIN.getText().toString().trim();
+        String challengeQ = challengeQuestion.getText().toString().trim();
+        String challengeA = challengeAnswer.getText().toString().trim();
 
         executor.execute(() -> {
             if (existingEntry == null) {
-                PasswordEntry newEntry = new PasswordEntry(0, siteName, username,
-                        EncryptionUtil.encrypt(password),
+                PasswordEntry newEntry = new PasswordEntry(0, sitenameInput, usernameInput,
+                        EncryptionUtil.encrypt(passwordInput),
                         EncryptionUtil.encrypt(extraPin),
                         challengeQ, challengeA);
                 db.passwordDao().insert(newEntry);
             } else {
-                existingEntry.setSiteName(siteName);
-                existingEntry.setUsername(username);
-                existingEntry.setPassword(EncryptionUtil.encrypt(password));
+                existingEntry.setSiteName(sitenameInput);
+                existingEntry.setUsername(usernameInput);
+                existingEntry.setPassword(EncryptionUtil.encrypt(passwordInput));
                 existingEntry.setExtraPin(EncryptionUtil.encrypt(extraPin));
                 existingEntry.setChallengeQuestion(challengeQ);
                 existingEntry.setChallengeAnswer(challengeA);
